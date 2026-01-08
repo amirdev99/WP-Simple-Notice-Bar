@@ -25,6 +25,7 @@ function wsnb_settings_init() {
     register_setting( 'wsnb_options_group', 'wsnb_default_text' );
     register_setting( 'wsnb_options_group','wsnb_bg_color', 'sanitize_hex_color' );
     register_setting( 'wsnb_options_group', 'wsnb_text_color', 'sanitize_hex_color' );
+    register_setting( 'wsnb_options_group', 'wsnb_font_size', 'sanitize_text_field' );
 
     add_settings_section(
         'wsnb_settings_section',
@@ -56,6 +57,14 @@ function wsnb_settings_init() {
         'wsnb_settings_section' 
     );
 
+    add_settings_field( 
+        'wsnb_font_size', 
+        __( 'Notice Bar Font Size (in px)', 'wsnb' ), 
+        'wsnb_font_size_render', 
+        'wp_simple_notice_bar', 
+        'wsnb_settings_section' 
+    );
+
     function wsnb_default_text_render() { 
 
         $option = get_option( 'wsnb_default_text', '🚀 This is a Simple Notice Bar (Practice Plugin)' );
@@ -77,6 +86,15 @@ function wsnb_settings_init() {
         ?>
         <input type="color" name="wsnb_text_color" value="<?php echo esc_attr( $color ); ?>" class="wsnb-color-field" data-default-color="#000000" />
           <?php   
+    }
+
+    function wsnb_font_size_render() { 
+
+        $font_size = get_option( 'wsnb_font_size', '16' );
+        ?>
+        <input type='number' name='wsnb_font_size' value='<?php echo esc_attr( $font_size ); ?>' min="10" max="100"> px
+        <?php
+
     }
 
 }

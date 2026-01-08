@@ -56,14 +56,16 @@ class WSNB_Main {
             true
         );
 
-        $default_text = get_option( 'wsnb_default_text', '🚀 This is a Simple Notice Bar (Practice Plugin)' );
+       // $default_text = get_option( 'wsnb_default_text', '🚀 This is a Simple Notice Bar (Practice Plugin)' );
         $bg_color = get_option( 'wsnb_bg_color', '#ffeb3b' );
        $text_color = get_option( 'wsnb_text_color', '#000000' );
+       $font_size = get_option( 'wsnb_font_size', '16' );
 
         $custom_css = "
             #wsnb-notice-bar {
                 background-color: {$bg_color} !important;
                 color: {$text_color} !important;
+                font-size: {$font_size}px !important;
             }";
         wp_add_inline_style( 'wsnb-style', $custom_css );
     }
