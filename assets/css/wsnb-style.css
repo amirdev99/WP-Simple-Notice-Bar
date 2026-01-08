@@ -1,0 +1,34 @@
+#wsnb-notice-bar {
+    position: fixed;
+    bottom: 0;               /* চাইলে top: 0 করে দিতে পারো */
+    left: 0;
+    width: 100%;
+    background-color: #222;
+    color: #ffffff;
+    padding: 14px 40px 14px 16px;
+    font-size: 15px;
+    text-align: center;
+    z-index: 99999;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+}
+
+#wsnb-notice-bar .wsnb-text {
+    display: inline-block;
+}
+
+#wsnb-notice-bar .wsnb-close {
+    position: absolute;
+    right: 65px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+#wsnb-notice-bar .wsnb-close:hover {
+    color: #ff5252;
+}
