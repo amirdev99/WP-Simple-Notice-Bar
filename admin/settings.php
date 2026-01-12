@@ -26,6 +26,7 @@ function wsnb_settings_init() {
     register_setting( 'wsnb_options_group','wsnb_bg_color', 'sanitize_hex_color' );
     register_setting( 'wsnb_options_group', 'wsnb_text_color', 'sanitize_hex_color' );
     register_setting( 'wsnb_options_group', 'wsnb_font_size', 'sanitize_text_field' );
+    register_setting( 'wsnb_options_group', 'wsnb_position' );
 
     add_settings_section(
         'wsnb_settings_section',
@@ -65,6 +66,14 @@ function wsnb_settings_init() {
         'wsnb_settings_section' 
     );
 
+    add_settings_field( 
+        'wsnb_position', 
+        __( 'Notice Bar Position', 'wsnb' ), 
+        'wsnb_position_render', 
+        'wp_simple_notice_bar', 
+        'wsnb_settings_section' 
+    );
+
     function wsnb_default_text_render() { 
 
         $option = get_option( 'wsnb_default_text', '🚀 This is a Simple Notice Bar (Practice Plugin)' );
@@ -93,6 +102,18 @@ function wsnb_settings_init() {
         $font_size = get_option( 'wsnb_font_size', '16' );
         ?>
         <input type='number' name='wsnb_font_size' value='<?php echo esc_attr( $font_size ); ?>' min="10" max="100"> px
+        <?php
+
+    }
+
+    function wsnb_position_render() { 
+
+        $position = get_option( 'wsnb_position', 'top' );
+        ?>
+        <select name='wsnb_position'>
+            <option value='top' <?php selected( $position, 'top' ); ?>>Top</option>
+            <option value='bottom' <?php selected( $position, 'bottom' ); ?>>Bottom</option>
+        </select>
         <?php
 
     }

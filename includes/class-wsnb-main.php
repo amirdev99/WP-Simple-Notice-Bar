@@ -60,12 +60,17 @@ class WSNB_Main {
         $bg_color = get_option( 'wsnb_bg_color', '#ffeb3b' );
        $text_color = get_option( 'wsnb_text_color', '#000000' );
        $font_size = get_option( 'wsnb_font_size', '16' );
+       $position = get_option( 'wsnb_position', 'top' );
+
+        $box_shadow = $position === 'top' ? '0 2px 6px rgba(0, 0, 0, 0.2)' : '0 -2px 6px rgba(0, 0, 0, 0.2)';
 
         $custom_css = "
             #wsnb-notice-bar {
                 background-color: {$bg_color} !important;
                 color: {$text_color} !important;
                 font-size: {$font_size}px !important;
+                {$position}: 0 !important;
+                box-shadow: {$box_shadow} !important;
             }";
         wp_add_inline_style( 'wsnb-style', $custom_css );
     }
